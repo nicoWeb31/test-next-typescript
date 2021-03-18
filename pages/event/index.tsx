@@ -1,6 +1,6 @@
+import React from 'react'
 
-
-const allEventPage = () => {
+const allEventPage : React.FC = () => {
     return (
         <div>
             <h3>All events pages</h3>
