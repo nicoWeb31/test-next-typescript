@@ -1,6 +1,7 @@
 import React from "react";
 import Link from 'next/link';
-import { Event } from "../../interfaces/envent";
+import { Event } from "../../../interfaces/envent";
+import style from './event-item.module.scss';
 
 interface EventItemsProps {
     event: Event;
@@ -17,19 +18,19 @@ const EventItem: React.FC<EventItemsProps> = ({ event }) => {
 
     const formatAdress : string = event.location.replace(',','\n')
     return (
-        <li>
+        <li className={style.item}>
             <img src={`/${event.image}`} alt={event.title}></img>
-            <div>
-                <div>
+            <div className={style.content}>
+                <div className={style.summary}>
                     <h2>{event.title}</h2>
-                    <div>
+                    <div className={style.Date}>
                         <time>{dateRedable}</time>
                     </div>
-                    <div>
+                    <div className={style.adress}>
                         <address>{formatAdress}</address>
                     </div>
                 </div>
-                <div>
+                <div className={style.actions}>
                     <Link href={`/event/${event.id}`}> 
                         Explore
                     

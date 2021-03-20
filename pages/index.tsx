@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
-import { EventList } from '../components/event/event-list';
+import { EventList } from '../components/event/eventList/event-list';
 import { getFeaturedEvents } from '../dummy-data';
 
 
