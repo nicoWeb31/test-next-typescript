@@ -1,22 +1,21 @@
 import React from "react";
-import Link from 'next/link';
+import Link from "next/link";
 import { Event } from "../../../interfaces/envent";
-import style from './event-item.module.scss';
+import style from "./event-item.module.scss";
+import Button from "../../ui/button/button";
 
 interface EventItemsProps {
     event: Event;
 }
 
 const EventItem: React.FC<EventItemsProps> = ({ event }) => {
+    const dateRedable = new Date(event.date).toLocaleString("en-US", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+    });
 
-
-    const dateRedable  = new Date(event.date).toLocaleString('en-US',{
-        day: 'numeric',
-        month: 'long',
-        year : 'numeric',
-    }) ; 
-
-    const formatAdress : string = event.location.replace(',','\n')
+    const formatAdress: string = event.location.replace(",", "\n");
     return (
         <li className={style.item}>
             <img src={`/${event.image}`} alt={event.title}></img>
@@ -24,6 +23,7 @@ const EventItem: React.FC<EventItemsProps> = ({ event }) => {
                 <div className={style.summary}>
                     <h2>{event.title}</h2>
                     <div className={style.Date}>
+                        <DateIcon />
                         <time>{dateRedable}</time>
                     </div>
                     <div className={style.adress}>
@@ -31,10 +31,7 @@ const EventItem: React.FC<EventItemsProps> = ({ event }) => {
                     </div>
                 </div>
                 <div className={style.actions}>
-                    <Link href={`/event/${event.id}`}> 
-                        Explore
-                    
-                    </Link>
+                    <Button refLink={`/event/${event.id}`}>Explore</Button>
                 </div>
             </div>
         </li>
