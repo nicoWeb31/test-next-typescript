@@ -1,20 +1,31 @@
-import React from 'react'
-import { EventList } from '../../components/event/eventList/event-list';
-import EventSearch from '../../components/event/eventSearch/EventSearch';
-import { getFeaturedEvents } from '../../dummy-data';
-import { Event } from '../../interfaces/envent';
+import React from "react";
+import { useRouter } from "next/router";
+import { EventList } from "../../components/event/eventList/event-list";
+import EventSearch from "../../components/event/eventSearch/EventSearch";
+import { getAllEvents, getFeaturedEvents } from "../../dummy-data";
+import { Event } from "../../interfaces/envent";
 
-const AllEventPage : React.FC = () => {
+const AllEventPage: React.FC = () => {
+    const featuredEvent: Event[] = getFeaturedEvents();
+    const router = useRouter();
+    const events = getAllEvents();
 
-    const featuredEvent : Event[] = getFeaturedEvents();
+    const findEneventHandler = (
+        year: string | undefined,
+        month: string | undefined
+    ) => {
+        const fullPath = `/events/${year}/${month}`;
+
+        router.push(fullPath);
+        
+    };
 
     return (
         <div>
-            <EventSearch/>
-            <EventList events={featuredEvent}/>
-
+            <EventSearch searchEvent={findEneventHandler} />
+            <EventList events={featuredEvent} />
         </div>
-    )
-}
+    );
+};
 
-export default AllEventPage
+export default AllEventPage;
