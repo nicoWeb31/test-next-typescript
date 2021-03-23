@@ -1,9 +1,13 @@
 import classes from './event-content.module.scss';
 
-function EventContent(props:any) {
+
+interface EventContentProps {
+  children: React.ReactNode;
+}
+const  EventContent : React.FC<EventContentProps> = ({children}) =>{
   return (
     <section className={classes.content}>
-      {props.children}
+      {children}
     </section>
   );
 }
