@@ -1,18 +1,37 @@
-import React from 'react';
+import React from "react";
+import { useRouter } from "next/router";
+import { getEventById } from "../../dummy-data";
+import EventSummary from "../../components/event-detail/event-detail/event-summary";
+import EventLogistics from "../../components/event-detail/event-detail/event-logistics";
+import EventContent from "../../components/event-detail/event-detail/event-content";
 
-interface EventDetailProps {
-    eventId: string;
-}
 
+const EventDetail: React.FC = () => {
+    const { query } = useRouter();
+    const id = query.eventId?.toString();
+    const event = getEventById(id);
 
-const EventDetail : React.FC<EventDetailProps> = ({ eventId }) => {
-  return (
-    <div>
-      <h1>event detail</h1>
-      <h3>{eventId}</h3>
-    </div>
-  );
+    if (!event){
+      return <p> not found event</p>;
+    } 
+
+    return (
+        <>
+            <EventSummary title={event?.title} />
+
+            {event && (
+                <EventLogistics
+                    date={event?.date}
+                    address={event?.location}
+                    image={event?.image}
+                    imageAlt={event?.title}
+                />
+            )}
+            <EventContent>
+                <p>{event?.description}</p>
+            </EventContent>
+        </>
+    );
 };
-
 
 export default EventDetail;
