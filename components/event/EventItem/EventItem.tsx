@@ -39,7 +39,7 @@ const EventItem: React.FC<EventItemsProps> = ({ event }) => {
                     </div>
                 </div>
                 <div className={style.actions}>
-                    <Button refLink={`/event/${event.id}`}>
+                    <Button refLink={`/events/${event.id}`}>
                         <span>Explore event</span>
                         <span className={style.icon}>
                             <ArrowRightIcon />

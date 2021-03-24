@@ -1,19 +1,23 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { getEventById } from "../../dummy-data";
+import { getEventById } from "../../components/data/dummy-data";
 import EventSummary from "../../components/event-detail/event-detail/event-summary";
 import EventLogistics from "../../components/event-detail/event-detail/event-logistics";
 import EventContent from "../../components/event-detail/event-detail/event-content";
-
+import ErrorAlert from "../../components/error-alert/error-alert";
 
 const EventDetail: React.FC = () => {
     const { query } = useRouter();
     const id = query.eventId?.toString();
     const event = getEventById(id);
 
-    if (!event){
-      return <p> not found event</p>;
-    } 
+    if (!event) {
+        return (
+            <ErrorAlert alert="">
+                <p> not found event</p>;
+            </ErrorAlert>
+        );
+    }
 
     return (
         <>

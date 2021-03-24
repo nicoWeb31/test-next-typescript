@@ -1,4 +1,4 @@
-import { Event } from "./interfaces/envent";
+import { Event } from "../../interfaces/envent";
 
 const DUMMY_EVENTS: Event[] = [
     {

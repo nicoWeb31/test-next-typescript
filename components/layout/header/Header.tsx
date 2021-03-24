@@ -21,6 +21,11 @@ const Header: React.FC = () => {
                         <a> All Events</a>
                         </Link>
                     </li>
+                    <li>
+                        <Link href="/product"> 
+                        <a> Product</a>
+                        </Link>
+                    </li>
                 </ul>
             </nav>
         </header>
