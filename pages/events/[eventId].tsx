@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { getEventById } from "../../components/data/dummy-data";
+import { getEventById } from "../../data/dummy-data";
 import EventSummary from "../../components/event-detail/event-detail/event-summary";
 import EventLogistics from "../../components/event-detail/event-detail/event-logistics";
 import EventContent from "../../components/event-detail/event-detail/event-content";

@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import { EventList } from "../../components/event/eventList/event-list";
 import EventSearch from "../../components/event/eventSearch/EventSearch";
-import { getAllEvents, getFeaturedEvents } from "../../components/data/dummy-data";
+import { getAllEvents, getFeaturedEvents } from "../../data/dummy-data";
 import { Event } from "../../interfaces/envent";
 
 const AllEventPage: React.FC = () => {

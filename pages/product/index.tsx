@@ -1,5 +1,7 @@
 import React from "react";
 import { Product } from "../../interfaces/envent";
+import fs from "fs/promises";
+import path from "path";
 
 
 interface IndexProps {
@@ -18,10 +20,28 @@ const index : React.FC<IndexProps>= ({products}) => {
     );
 };
 
+
+//first executing , no exposed to front side
 export async function getStaticProps(){
-    return { props : {
-        products :[{id : 'p1', title: 'Product List 1',}]
-    }};
+
+    const filePath  =  path.join(process.cwd(),'data','dummy.json' )
+
+    try {
+        
+        const jsonData = await fs.readFile(filePath);
+        const {products} = JSON.parse(jsonData.toString());
+        return { props : {
+            products
+        },
+        //relidate seconde for recharge fresh data
+        revalidate : 30,
+    };
+        
+    } catch (error) {
+        console.log(error)
+    }
+    
+
 }
 
 export default index;

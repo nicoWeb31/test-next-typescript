@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { useRouter } from "next/router";
-import { getFilteredEvents } from "../../components/data/dummy-data";
+import { getFilteredEvents } from "../../data/dummy-data";
 import { EventList } from "../../components/event/eventList/event-list";
 import ResultsTitle from "../../components/results-title/results-title";
 import Button from "../../components/ui/button/button";
