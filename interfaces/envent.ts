@@ -1,16 +1,15 @@
 export interface Event {
-id: string;
-title: string;
-description: string;
-location: string;
-date: string;
-image: string;
-isFeatured: boolean;
-
+    id: string;
+    title: string;
+    description: string;
+    location: string;
+    date: string;
+    image: string;
+    isFeatured: boolean;
 }
 
-
 export interface Product {
-id: string;
-title: string;
+    id: string;
+    title: string;
+    description: string;
 }
