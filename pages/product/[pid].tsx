@@ -7,8 +7,7 @@ interface ProductDetailProps {
     product: Product;
 }
 
-
-const ProductDetailPage: React.FC<ProductDetailProps> = ({product}) => {
+const ProductDetailPage: React.FC<ProductDetailProps> = ({ product }) => {
     return (
         <Fragment>
             <h1>{product.title}</h1>
@@ -26,7 +25,7 @@ export async function getStaticProps(context: any) {
         const jsonData = await fs.readFile(filePath);
         const { products } = JSON.parse(jsonData.toString());
 
-        const product = products.find((prod : Product)  => prod.id === productId);
+        const product = products.find((prod: Product) => prod.id === productId);
 
         return {
             props: {
@@ -36,6 +35,18 @@ export async function getStaticProps(context: any) {
     } catch (error) {
         console.log(error);
     }
+}
+
+export async function getStaticPaths() {
+    return {
+        paths: [
+            { params: { pid: "p1" } },
+            { params: { pid: "p2" } },
+            { params: { pid: "p3" } },
+            { params: { pid: "p4" } },
+        ],
+        fallback: false,
+    };
 }
 
 export default ProductDetailPage;

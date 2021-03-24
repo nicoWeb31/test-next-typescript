@@ -2,6 +2,7 @@ import React from "react";
 import { Product } from "../../interfaces/envent";
 import fs from "fs/promises";
 import path from "path";
+import Link from "next/link";
 
 
 interface IndexProps {
@@ -14,7 +15,7 @@ const index : React.FC<IndexProps>= ({products}) => {
         <div>
             <h1>ProductList</h1>
             <ul>
-                {products.map(product => <li key={product.id}>{product.title}</li>)}
+                {products.map(product => <li key={product.id}><Link href={`/product/${product.id}`}><a>{product.title}</a></Link></li>)}
             </ul>
         </div>
     );
