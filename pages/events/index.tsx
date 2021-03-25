@@ -4,6 +4,8 @@ import { EventList } from "../../components/event/eventList/event-list";
 import EventSearch from "../../components/event/eventSearch/EventSearch";
 import { getAllEvents, getFeaturedEvents } from "../../data/dummy-data";
 import { Event } from "../../interfaces/envent";
+import { getDataEvents } from '../../utils/getEventApi'
+
 
 const AllEventPage: React.FC = () => {
     const featuredEvent: Event[] = getFeaturedEvents();
@@ -20,6 +22,12 @@ const AllEventPage: React.FC = () => {
         
     };
 
+    
+
+    const data = getDataEvents()
+    console.log(data)
+
+
     return (
         <div>
             <EventSearch searchEvent={findEneventHandler} />
@@ -27,5 +35,14 @@ const AllEventPage: React.FC = () => {
         </div>
     );
 };
+
+// export async function getStaticProps(){
+
+
+
+//     return { 
+
+//     }
+// }
 
 export default AllEventPage;
