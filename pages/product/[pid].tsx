@@ -8,6 +8,10 @@ interface ProductDetailProps {
 }
 
 const ProductDetailPage: React.FC<ProductDetailProps> = ({ product }) => {
+    if (!product) {
+        return <p>loading .....</p>;
+    }
+
     return (
         <Fragment>
             <h1>{product.title}</h1>
@@ -16,15 +20,20 @@ const ProductDetailPage: React.FC<ProductDetailProps> = ({ product }) => {
     );
 };
 
+const getData = async () => {
+    const filePath = path.join(process.cwd(), "data", "dummy.json");
+
+    const jsonData = await fs.readFile(filePath);
+    const { products } = JSON.parse(jsonData.toString());
+    return products;
+};
+
 export async function getStaticProps(context: any) {
     const { params } = context;
     const productId = params.pid;
 
-    const filePath = path.join(process.cwd(), "data", "dummy.json");
     try {
-        const jsonData = await fs.readFile(filePath);
-        const { products } = JSON.parse(jsonData.toString());
-
+        const products = await getData();
         const product = products.find((prod: Product) => prod.id === productId);
 
         return {
@@ -38,13 +47,17 @@ export async function getStaticProps(context: any) {
 }
 
 export async function getStaticPaths() {
+    const products: [] = await getData();
+    const ids = products.map((product: Product) => product.id);
+
+    const pathWithParams = ids.map((id: string) => {
+        return {
+            params: { pid: id },
+        };
+    });
+
     return {
-        paths: [
-            { params: { pid: "p1" } },
-            { params: { pid: "p2" } },
-            { params: { pid: "p3" } },
-            { params: { pid: "p4" } },
-        ],
+        paths: pathWithParams,
         fallback: false,
     };
 }
