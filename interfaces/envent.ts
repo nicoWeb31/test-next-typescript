@@ -1,10 +1,12 @@
+import { ImageProps } from "next/image";
+
 export interface Event {
     id: string;
     title: string;
     description: string;
     location: string;
     date: string;
-    image: string;
+    image: any;
     isFeatured: boolean;
 }
 

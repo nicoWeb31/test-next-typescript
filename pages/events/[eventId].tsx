@@ -7,12 +7,13 @@ import EventLogistics from "../../components/event-detail/event-detail/event-log
 import EventContent from "../../components/event-detail/event-detail/event-content";
 import ErrorAlert from "../../components/error-alert/error-alert";
 import { Event } from "../../interfaces/envent";
+import Head from "next/head";
 
 interface EventDetailProps {
     event: Event;
 }
 
-const EventDetail: React.FC<EventDetailProps> = ({event}) => {
+const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
     // const { query } = useRouter();
     // const id = query.eventId?.toString();
     // const event = getEventById(id);
@@ -27,6 +28,11 @@ const EventDetail: React.FC<EventDetailProps> = ({event}) => {
 
     return (
         <>
+            <Head>
+                <title>{event.title} </title>
+                <meta name="description" content={event.description} />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
             <EventSummary title={event?.title} />
 
             {event && (
@@ -49,17 +55,16 @@ export async function getStaticProps(context: any) {
     const event = await getEventById(eventId);
 
     return {
-        props : {
+        props: {
             event,
         },
-        revalidate: 30
-    }
-
+        revalidate: 30,
+    };
 }
 
 //path
 export async function getStaticPaths() {
-    const events : Event[] = await getFeaturedEvent();
+    const events: Event[] = await getFeaturedEvent();
     const ids = events.map((event: Event) => event.id);
 
     const pathWithParams = ids.map((id: string) => {
@@ -70,7 +75,7 @@ export async function getStaticPaths() {
 
     return {
         paths: pathWithParams,
-        fallback: 'blocking',
+        fallback: "blocking",
     };
 }
 

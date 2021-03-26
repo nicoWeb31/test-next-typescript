@@ -13,7 +13,8 @@ const Home: React.FC<HomeProps> = ({ featuredEvent }) => {
     return (
         <div>
             <Head>
-                <title>Create Next App</title>
+                <title>Nextjs  Event </title>
+                <meta name="description" content="very test nextjs ;)"/>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 

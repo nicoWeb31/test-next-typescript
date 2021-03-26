@@ -7,11 +7,12 @@ import ResultsTitle from "../../components/results-title/results-title";
 import Button from "../../components/ui/button/button";
 import ErrorAlert from "../../components/error-alert/error-alert";
 import { Event } from "../../interfaces/envent";
+import Head from "next/head";
 
 interface EventBySlug {
     hasError: boolean;
     filteredEvents: Event[];
-    datetm: { filterYear : number, filterMonth : number};
+    datetm: { filterYear: number; filterMonth: number };
 }
 
 const EventBySlug: React.FC<EventBySlug> = ({
@@ -48,14 +49,20 @@ const EventBySlug: React.FC<EventBySlug> = ({
     if (!filteredEvents) {
         return <p className="center">Loading....</p>;
     }
+    
     const date = new Date(datetm?.filterYear, datetm?.filterMonth - 1);
 
     return (
-        <div>
+        <>
+            <Head>
+                <title>filtered Event </title>
+                <meta name="description" content="very test nextjs ;)" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
             <h1 className="center">filter events by slug</h1>
             <ResultsTitle date={date} />
             <EventList events={filteredEvents} />
-        </div>
+        </>
     );
 };
 
