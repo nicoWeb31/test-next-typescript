@@ -30,7 +30,7 @@ const Home: React.FC<HomeProps> = ({ featuredEvent }) => {
 //prerendering page
 export async function getStaticProps() {
     const featuredEvent = await getFeaturedEvent();
-    return { props: { featuredEvent } };
+    return { props: { featuredEvent }, revalidate : 1800 };
 }
 
 

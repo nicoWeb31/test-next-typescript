@@ -2,15 +2,18 @@ import React from "react";
 import { useRouter } from "next/router";
 import { EventList } from "../../components/event/eventList/event-list";
 import EventSearch from "../../components/event/eventSearch/EventSearch";
-import { getAllEvents, getFeaturedEvents } from "../../data/dummy-data";
+// import { getAllEvents, getFeaturedEvents } from "../../data/dummy-data";
 import { Event } from "../../interfaces/envent";
-import { getDataEvents } from '../../utils/getEventApi'
+import { getDataEvents } from "../../utils/getEventApi";
 
+interface AllEventPageProps {
+    events: Event[];
+}
 
-const AllEventPage: React.FC = () => {
-    const featuredEvent: Event[] = getFeaturedEvents();
+const AllEventPage: React.FC<AllEventPageProps> = ({ events }) => {
+    // const featuredEvent: Event[] = getFeaturedEvents();
     const router = useRouter();
-    const events = getAllEvents();
+    // const events = getAllEvents();
 
     const findEneventHandler = (
         year: string | undefined,
@@ -19,30 +22,19 @@ const AllEventPage: React.FC = () => {
         const fullPath = `/events/${year}/${month}`;
 
         router.push(fullPath);
-        
     };
-
-    
-
-    const data = getDataEvents()
-    console.log(data)
-
 
     return (
         <div>
             <EventSearch searchEvent={findEneventHandler} />
-            <EventList events={featuredEvent} />
+            <EventList events={events} />
         </div>
     );
 };
 
-// export async function getStaticProps(){
-
-
-
-//     return { 
-
-//     }
-// }
+export const getStaticProps = async() => {
+    const events = await getDataEvents();
+    return { props :{ events }, revalidate : 1800}
+};
 
 export default AllEventPage;

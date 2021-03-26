@@ -1,7 +1,7 @@
 import React from "react";
 // import { useRouter } from "next/router";
 // import { getEventById } from "../../data/dummy-data";
-import { getEventById, getDataEvents } from "../../utils/getEventApi";
+import { getEventById, getFeaturedEvent } from "../../utils/getEventApi";
 import EventSummary from "../../components/event-detail/event-detail/event-summary";
 import EventLogistics from "../../components/event-detail/event-detail/event-logistics";
 import EventContent from "../../components/event-detail/event-detail/event-content";
@@ -51,14 +51,15 @@ export async function getStaticProps(context: any) {
     return {
         props : {
             event,
-        }
+        },
+        revalidate: 30
     }
 
 }
 
 //path
 export async function getStaticPaths() {
-    const events : Event[] = await getDataEvents();
+    const events : Event[] = await getFeaturedEvent();
     const ids = events.map((event: Event) => event.id);
 
     const pathWithParams = ids.map((id: string) => {
@@ -69,7 +70,7 @@ export async function getStaticPaths() {
 
     return {
         paths: pathWithParams,
-        fallback: true,
+        fallback: 'blocking',
     };
 }
 
