@@ -1,6 +1,7 @@
 import axios from "axios";
+import { Event } from "../interfaces/envent";
 
-export const getDataEvents = async () => {
+export const getDataEvents = async ()  => {
     const { data } = await axios.get(
         "https://nexts-js-course-default-rtdb.firebaseio.com/events.json"
     );
@@ -17,6 +18,12 @@ export const getDataEvents = async () => {
 };
 
 export const getFeaturedEvent = async () => {
-    const allEvents = await getDataEvents();
+    const allEvents : Event[] = await getDataEvents();
     return allEvents.filter((event) => event.isFeatured);
 };
+
+
+export async function getEventById(id: string | undefined) {
+    const allEvents : Event[] = await getDataEvents();
+    return allEvents.find((event) => event.id === id);
+}
