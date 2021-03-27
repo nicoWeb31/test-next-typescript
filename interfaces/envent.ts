@@ -15,3 +15,9 @@ export interface Product {
     title: string;
     description: string;
 }
+
+export interface Feedback {
+    id: string;
+    email: string;
+    text: string;
+}
