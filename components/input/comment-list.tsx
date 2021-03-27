@@ -1,6 +1,6 @@
 import classes from './comment-list.module.scss';
 
-function CommentList() {
+const  CommentList: React.FC = () => {
   return (
     <ul className={classes.comments}>
       {/* Render list of comments - fetched from API */}

@@ -1,7 +1,7 @@
 import classes from './newsletter-registration.module.scss';
 
-function NewsletterRegistration() {
-  function registrationHandler(event) {
+const NewsletterRegistration : React.FC = () => {
+  function registrationHandler(event : React.FormEvent) {
     event.preventDefault();
 
     // fetch user input (state or refs)
