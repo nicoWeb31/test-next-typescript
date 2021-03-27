@@ -3,8 +3,8 @@ import type * as E from "express";
 import fs from "fs";
 import path from "path";
 
-const feedBackPath = () => path.join(process.cwd(), "data", "feedbach.json");
-const extractFeedback = (pathname: string) => {
+export const feedBackPath = () => path.join(process.cwd(), "data", "feedbach.json");
+export const extractFeedback = (pathname: string) => {
     const fileData = fs.readFileSync(pathname);
     return JSON.parse(fileData.toString());
 };
