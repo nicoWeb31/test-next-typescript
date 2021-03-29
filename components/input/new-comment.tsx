@@ -2,12 +2,12 @@ import { useRef, useState } from "react";
 import classes from "./new-comment.module.scss";
 
 
-interface NewComment {
-  onAddComment : Function;
+interface NewCommentProps {
+  onAddComment: any;
 }
 
 
-const NewComment: React.FC<NewComment> = ({onAddComment}) => {
+const NewComment: React.FC<NewCommentProps> = ({onAddComment}) => {
     const [isInvalid, setIsInvalid] = useState(false);
 
     const emailInputRef = useRef<HTMLInputElement>(null);
@@ -21,18 +21,18 @@ const NewComment: React.FC<NewComment> = ({onAddComment}) => {
         const enteredName = nameInputRef.current?.value;
         const enteredComment = commentInputRef.current?.value;
 
-        if (
-            !enteredEmail ||
-            enteredEmail.trim() === "" ||
-            !enteredEmail.includes("@") ||
-            !enteredName ||
-            enteredName.trim() === "" ||
-            !enteredComment ||
-            enteredComment.trim() === ""
-        ) {
-            setIsInvalid(true);
-            return;
-        }
+        // if (
+        //     !enteredEmail ||
+        //     enteredEmail.trim() === "" ||
+        //     !enteredEmail.includes("@") ||
+        //     !enteredName ||
+        //     enteredName.trim() === "" ||
+        //     !enteredComment ||
+        //     enteredComment.trim() === ""
+        // ) {
+        //     setIsInvalid(true);
+        //     return;
+        // }
 
         onAddComment({
             email: enteredEmail,
@@ -42,7 +42,7 @@ const NewComment: React.FC<NewComment> = ({onAddComment}) => {
     };
 
     return (
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={sendCommentHandler}>
             <div className={classes.row}>
                 <div className={classes.control}>
                     <label htmlFor="email">Your email</label>
