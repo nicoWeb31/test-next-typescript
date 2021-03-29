@@ -1,6 +1,7 @@
 import Head from "next/head";
 import React from "react";
 import { EventList } from "../components/event/eventList/event-list";
+import NewsletterRegistration from "../components/input/newsletter-registration";
 import { Event } from "../interfaces/envent";
 import { getFeaturedEvent } from "../utils/getEventApi";
 
@@ -20,6 +21,7 @@ const Home: React.FC<HomeProps> = ({ featuredEvent }) => {
 
             <main>
                 <div>
+                    <NewsletterRegistration/>
                     <EventList events={featuredEvent} />
                 </div>
             </main>

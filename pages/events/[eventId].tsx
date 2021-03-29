@@ -8,6 +8,7 @@ import EventContent from "../../components/event-detail/event-detail/event-conte
 import ErrorAlert from "../../components/error-alert/error-alert";
 import { Event } from "../../interfaces/envent";
 import Head from "next/head";
+import Comments from "../../components/input/comments";
 
 interface EventDetailProps {
     event: Event;
@@ -46,6 +47,7 @@ const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
             <EventContent>
                 <p>{event?.description}</p>
             </EventContent>
+            <Comments eventId={event.id}/>
         </>
     );
 };

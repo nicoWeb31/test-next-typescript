@@ -4,8 +4,14 @@ import CommentList from './comment-list';
 import NewComment from './new-comment';
 import classes from './comments.module.scss';
 
-function Comments(props) {
-  const { eventId } = props;
+interface CommentsProps {
+  eventId : string;
+}
+
+
+
+const  Comments: React.FC<CommentsProps> = ({eventId}) =>{
+
 
   const [showComments, setShowComments] = useState(false);
 
@@ -13,7 +19,7 @@ function Comments(props) {
     setShowComments((prevStatus) => !prevStatus);
   }
 
-  function addCommentHandler(commentData) {
+  function addCommentHandler(commentData : object) {
     // send data to API
   }
 
