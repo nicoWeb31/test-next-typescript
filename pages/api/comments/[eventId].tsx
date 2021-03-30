@@ -27,6 +27,7 @@ const handler = (req: express.Request, res: express.Response) => {
             text,
         };
         console.log(newComment);
+        res.status(201).json({comment: newComment});
     }
 
     if (req.method === "GET") {
