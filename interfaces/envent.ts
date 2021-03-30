@@ -23,8 +23,9 @@ export interface Feedback {
 }
 
 export interface Comment {
-    id: string;
+    _id: string;
     email: string;
     name: string;
     text: string;
+    eventId: any;
 }

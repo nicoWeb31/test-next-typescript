@@ -12,7 +12,7 @@ const CommentList: React.FC<CommentListProps> = ({ comments }) => {
 
             {comments.map((comment: Comment) => {
                 return (
-                    <li key={comment.id}>
+                    <li key={comment._id}>
                         <p>{comment.text}</p>
                         <div>
                             By <address>{comment.email}</address>
