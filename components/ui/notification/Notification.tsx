@@ -3,10 +3,17 @@ import { useContext } from "react";
 import classes from "./notification.module.scss";
 import NotificationContext from "../../store/notification-context";
 
-const  Notification = (props) => {
+
+interface NotificationProps {
+message: string;
+title: string;
+status: string;
+}
+
+const  Notification: React.FC<NotificationProps>= ({title, message, status}) => {
     const notificationCtx = useContext(NotificationContext);
 
-    const { title, message, status } = props;
+
 
     let statusClasses = "";
 
