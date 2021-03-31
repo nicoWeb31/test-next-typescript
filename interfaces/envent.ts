@@ -29,3 +29,12 @@ export interface Comment {
     text: string;
     eventId: any;
 }
+
+export interface Notification  {
+
+
+    message: string | null;
+    title: string | null;
+    status: string | null;
+
+}

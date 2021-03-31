@@ -1,16 +1,41 @@
-import {createContext} from 'react'
+import { createContext, useState } from "react";
+import { Notification } from "../interfaces/envent";
 
-// interface ContextNotification {
-//     notification : null | {title: string, message: string,status: string};
-//     showNotification: ()=>{};
-//     hideNotification: ()=>{};
 
-// }
+interface ContextNotificationProviderProps {
+    children: React.ReactNode;
+}
 
-const notificationContext = createContext({
+const NotificationContext = createContext({
     notification: null,
-    showNotification: function(){},
-    hideNotification: function(){},
-})
+    showNotification: function (notificationData: Notification) {},
+    hideNotification: function () {},
+});
 
-export default notificationContext
+export const NotificationcontextProvider: React.FC<ContextNotificationProviderProps> = ({
+    children,
+}) => {
+    const [activNotifications, setActiveNotifications] = useState<null | Notification>(null);
+
+    const showNotification = (notificationData : Notification) => {
+        setActiveNotifications(notificationData);
+    };
+
+    const hideNotification = () => {
+        setActiveNotifications(null);
+    };
+
+    const context = {
+        notification: activNotifications,
+        showNotification: showNotification,
+        hideNotification: hideNotification,
+    };
+
+    return (
+        <NotificationContext.Provider value={context}>
+            {children}
+        </NotificationContext.Provider>
+    );
+};
+
+export default NotificationContext;
